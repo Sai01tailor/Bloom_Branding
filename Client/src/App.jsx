@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import AdminDashboard from "./pages/AdminDashboard";
@@ -6,32 +6,41 @@ import Testimonials from "./pages/Testimonials";
 import Services from "./pages/Services";
 import Enquiries from "./pages/Enquiries";
 
-import { EnquiryProvider } from "./context/EnquiryContext";
-import { ServiceProvider } from "./context/ServiceContext";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import OtpVerify from "./pages/auth/OtpVerify";
 
-function AnimatedRoutes() {
-  const location = useLocation();
-
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<AdminDashboard />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/enquiries" element={<Enquiries />} />
-      </Routes>
-    </AnimatePresence>
-  );
-}
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
-      <EnquiryProvider>
-        <ServiceProvider>
-          <AnimatedRoutes />
-        </ServiceProvider>
-      </EnquiryProvider>
+      <AnimatePresence mode="wait">
+        <Routes>
+
+          {/* 🔐 PUBLIC ROUTES */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-otp" element={<OtpVerify />} />
+
+          {/* 🔒 ALL ADMIN ROUTES PROTECTED */}
+          <Route
+            element={
+              <ProtectedRoute />
+            }
+          >
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/enquiries" element={<Enquiries />} />
+          </Route>
+
+          {/* 🔁 DEFAULT */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+
+        </Routes>
+      </AnimatePresence>
     </BrowserRouter>
   );
 }

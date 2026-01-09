@@ -4,27 +4,36 @@ const bcrypt = require("bcryptjs");
 const adminSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true,
+    required: true
   },
-  email:{
+
+  email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
-  password:{
+
+  password: {
     type: String,
-    required: true,
+    required: true
   },
+
+
+  otp: String,
+  otpExpiresAt: Date,
+  isVerified: {
+    type: Boolean,
+    default: false
+  }
 });
 
-// hash password
+
 adminSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
   this.password = await bcrypt.hash(this.password, 10);
 });
 
 
-// compare password
 adminSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

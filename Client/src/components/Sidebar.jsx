@@ -22,7 +22,7 @@ const Sidebar = () => {
       </div>
 
       <nav className="p-3 space-y-2">
-        <NavLink to="/" className={linkClass}>
+        <NavLink to="/dashboard" className={linkClass}>
           <LayoutDashboard size={18} />
           {open && "Dashboard"}
         </NavLink>

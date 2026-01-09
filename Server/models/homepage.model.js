@@ -33,7 +33,7 @@ const homepageSchema = new mongoose.Schema(
          ref: "Offer" 
       }
     ],
-
+    
     featuredPortfolio: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -59,3 +59,4 @@ const homepageSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Homepage", homepageSchema);
+
