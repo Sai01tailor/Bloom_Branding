@@ -11,6 +11,7 @@ import Home from "../Pages/Home"
 import Journey from "../Pages/Journey"
 import Contact from "../Pages/Contact"
 import { Link } from "react-router-dom"
+import { useMenu } from "./MenuProvider"
 
 const menuItems = [
   { id: 1, title: "Home", img: "https://picsum.photos/400/300?random=5" },
@@ -62,31 +63,7 @@ const MenuItem = ({ title, img }) => {
       transition={{ duration: 0.35 }}
     >
       <div className="relative flex items-center justify-center w-full h-full px-10">
-        <AnimatePresence>
-          {isHovered && (
-            <>
-              {/* LEFT IMAGE */}
-              <motion.div
-                initial={{ opacity: 0, x: -100, scale: 0.8 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -100, scale: 0.8 }}
-                className="absolute left-[5%] w-[180px] h-[80%] overflow-hidden rounded-[80px] hidden lg:block"
-              >
-                <img src={img} className="w-full h-full object-cover" alt="" />
-              </motion.div>
-
-              {/* RIGHT IMAGE */}
-              <motion.div
-                initial={{ opacity: 0, x: 100, scale: 0.8 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: 100, scale: 0.8 }}
-                className="absolute right-[5%] w-[180px] h-[80%] overflow-hidden rounded-[80px] hidden lg:block"
-              >
-                <img src={img} className="w-full h-full object-cover" alt="" />
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+        
 
         <motion.h2
           className="heading text-5xl md:text-7xl font-bold uppercase z-10 tracking-tighter overflow-hidden"
@@ -100,7 +77,18 @@ const MenuItem = ({ title, img }) => {
 }
 
 const Menu = () => {
-  const [menuStatus, setMenuStatus] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768)
+
+React.useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768)
+    console.log(isMobile)
+  }
+
+  window.addEventListener("resize", handleResize)
+  return () => window.removeEventListener("resize", handleResize)
+}, [])
+  const { menuStatus,setMenuStatus } = useMenu()
   const mouseX = useMotionValue(window.innerWidth)
   const mouseY = useMotionValue(window.innerHeight / 2)
 
@@ -126,7 +114,13 @@ const Menu = () => {
     transition: { duration: 0.8, ease: "easeInOut" }
   }
 };
-  const smoothPath = useMotionTemplate`M 100 0 Q ${pullX} ${curveY} 100 1000`
+const smoothPath = useMotionTemplate`
+  M 100 0 Q ${
+    menuStatus || !isMobile ? pullX : 0
+  } ${
+    menuStatus || !isMobile ? curveY : 500
+  } 100 1000
+`
 
   return (
     <motion.div
@@ -137,11 +131,7 @@ const Menu = () => {
       }}
     >
       {/* PRELOAD IMAGES (Invisible) */}
-      <div className="hidden">
-        {menuItems.map((item) => (
-          <img key={item.id} src={item.img} alt="preload" />
-        ))}
-      </div>
+      
 
       <motion.svg
         className="h-full w-[100px] pointer-events-auto"

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Color from "../Global/Color";
 
 const ParallaxColumnGrid = ({ images = [] }) => {
   const sectionRef = useRef(null);
@@ -26,7 +27,9 @@ const ParallaxColumnGrid = ({ images = [] }) => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-black py-40"
+      className="relative w-full bg-transparent py-40 md:pr-50 p-0 "
+
+    
     >
       <div className="mx-auto grid grid-cols-1 gap-10 
                       sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">

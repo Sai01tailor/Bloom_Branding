@@ -1,8 +1,9 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, color } from "framer-motion";
 import { Grid, Film, User, PlusSquare, MessageCircle } from "lucide-react";
 import TextType from "../Global/TextType";
-
+import Color from '../Global/Color'
+import {Link} from 'react-router-dom'
 /* ===== PHONE ===== */
 const PHONE_WIDTH = 433;
 const PHONE_HEIGHT = 882;
@@ -22,7 +23,7 @@ function Iphone({ children }) {
         className="absolute inset-0 w-full h-full z-0"
       >
         {/* OUTER */}
-        <rect x="0" y="0" width="433" height="882" rx="72" fill="#e5e5e5" />
+        <rect x="0" y="0" width="433" height="882" rx="72" fill={Color.ElectricBlue} />
         {/* INNER */}
         <rect x="8" y="8" width="417" height="866" rx="64" fill="#000" />
         {/* ISLAND */}
@@ -39,8 +40,6 @@ function Iphone({ children }) {
           bottom: 20,
           borderRadius: 56,
           paddingTop: 16,
-          paddingLeft: 8,
-          paddingRight: 8,
         }}
       >
         <div
@@ -74,8 +73,8 @@ function InstagramProfile() {
   return (
     <div className="relative bg-white">
       {/* HEADER */}
-      <div className="sticky top-0 z-20 bg-white px-6 py-4 flex justify-between border-b">
-        <p className="font-semibold text-[15px]">your_username</p>
+      <div className="sticky top-0 z-20 bg-white px-6 py-4 flex justify-between border-b " style={{paddingLeft:16,paddingRight:16}}>
+        <p className="font-semibold text-[15px]">bloom.branding_</p>
         <div className="flex gap-4">
           <PlusSquare size={20} />
           <MessageCircle size={20} />
@@ -83,12 +82,13 @@ function InstagramProfile() {
       </div>
 
       {/* PROFILE */}
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-6" style={{paddingLeft:16,paddingRight:16,paddingTop:4}}>
         <div className="flex items-center gap-5">
           <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-pink-500 to-orange-400 p-[3px]">
             <div className="w-full h-full rounded-full bg-gray-200" />
           </div>
-
+          <div className="w-[50%]">
+          <p className="font-semibold text-[1rem]">Bloom branding | Digital Marketing Surat</p>  
           <div className="flex flex-1 justify-between text-center">
             {[
               ["Posts", "128"],
@@ -101,29 +101,28 @@ function InstagramProfile() {
               </div>
             ))}
           </div>
+          </div>
         </div>
 
         <div className="mt-4 text-[14px]">
-          <p className="font-semibold">Your Name</p>
           <p className="text-gray-600">
-            Web Dev • Designer <br />
-            Building clean internet things ✨
+          Social Media Marketing | branding | Influencer Management | Content Creation
           </p>
-          <p className="text-blue-500 mt-1">yourwebsite.com</p>
+          <p className="text-blue-500 mt-1">LocalHost:5734</p>
         </div>
 
-        <div className="flex gap-3 mt-5">
-          <button className="flex-1 bg-gray-100 py-2 rounded-xl text-sm">
+        <div className="flex gap-3 mt-5" style={{paddingBottom:4}}>
+          <Link to={'https://instagram.com'} className="flex-1 flex justify-center items-center bg-gray-100 py-2 h-7 rounded text-sm" >
             Follow
-          </button>
-          <button className="flex-1 bg-gray-100 py-2 rounded-xl text-sm">
+          </Link>
+          <Link to={'https://instagram.com'} className="flex-1 flex justify-center items-center bg-gray-100 py-2 h-7 rounded text-sm" >
             Message
-          </button>
+          </Link>
         </div>
       </div>
 
       {/* TABS */}
-      <div className="flex justify-around border-t mt-6 py-3">
+      <div className="flex justify-around h-7  mt-6 py-3" style={{borderBottom:'2px solid black'}}>
         <Grid size={20} />
         <Film size={20} className="text-gray-400" />
         <User size={20} className="text-gray-400" />
@@ -163,7 +162,7 @@ function InstagramProfile() {
             {/* CLOSE */}
             <button
               onClick={() => setActivePost(null)}
-              className="absolute top-4 right-4 text-white text-xl"
+              className="absolute top-4 right-4 text-white text-xl cursor-pointer"
             >
               ✕
             </button>
@@ -178,14 +177,9 @@ function InstagramProfile() {
 export default function App() {
   return (
     <div className="relative">
-      <div className="min-h-screen  bg-neutral-100 flex items-center justify-center">
-        <Iphone>
-          <InstagramProfile />
-        </Iphone>
-      </div>
       <motion.div
-        className="absolute h-[10vh] top-0 bottom-0 left-[10vw] text-[5vh] "
-        style={{ marginBlock: "auto" }}
+        className="relative h-[10vh] top-0 bottom-0  text-[5vh] md:absolute md:left-[10vw]"
+        style={{ marginBlock: "auto" ,textAlign:'center'}}
         initial={{x:'-100vw',opacity:0}}
         animate={{x:0,opacity:1}}
         transition={{duration:1,ease:'easeInOut'}}
@@ -193,14 +187,20 @@ export default function App() {
         <h1 style={{ fontFamily: "Bigilla" }}>Instagram Preview</h1>
       </motion.div>
       <motion.div
-        className="absolute h-[10vh] top-0 bottom-0 right-[15vw] text-[5vh] "
-        style={{ marginBlock: "auto" }}
+        className="relative h-[10vh] top-0 bottom-0  text-[5vh] md:absolute md:right-[15vw] "
+        
+        style={{ marginBlock: "auto",textAlign:"center" }}
         initial={{x:'100vw',opacity:0}}
         animate={{x:0,opacity:1}}
         transition={{duration:1,ease:'easeInOut'}}
       >
         <h1 style={{ fontFamily: "Bigilla" }}>Follow US </h1>
       </motion.div>
+      <div className="min-h-screen  flex items-center justify-center " style={{backgroundColor:Color.EarlGray,padding:'5vh'}}>
+        <Iphone>
+          <InstagramProfile />
+        </Iphone>
+      </div>
     </div>
   );
 }

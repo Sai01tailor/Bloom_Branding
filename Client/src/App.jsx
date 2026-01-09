@@ -6,6 +6,8 @@ import Journey from './Component/Pages/Journey.jsx'
 import { useEffect } from 'react'
 import Lenis from "lenis";
 import Projects from './Component/Pages/Projects.jsx'
+import ServicesPage from './Component/Pages/Services.jsx'
+
 
 function App() {
    useEffect(() => {
@@ -30,6 +32,7 @@ function App() {
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/journey' element={<Journey/>}/>
       <Route path='/projects' element={<Projects/>}/>
+      <Route path='/services' element={<ServicesPage/>}/>
     </Routes>
   )
 }

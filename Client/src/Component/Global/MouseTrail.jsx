@@ -79,7 +79,7 @@ export default function PenTrail({ stroke = "#fff" }) {
   return (
     <div
       ref={ref}
-      className="w-screen h-[80vh]"
+      className="w-screen h-[80vh] bg-transparent"
       style={{
         position: "absolute",
         overflow: "hidden",

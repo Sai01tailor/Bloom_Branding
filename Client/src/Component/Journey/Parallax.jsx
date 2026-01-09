@@ -1,139 +1,145 @@
-"use client"
+"use client";
 
-import {
-    motion,
-    useScroll,
-    useSpring,
-    useTransform,
-} from "motion/react"
-import { useRef } from "react"
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import { useRef } from "react";
+import Silk from "./Background";
+import Color from "../Global/Color";
 
 function useParallax(value, distance) {
-    return useTransform(value, [0, 1], [-distance, distance])
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
+const a = Color.ButterYellow
+function Image({ id,image,description }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref });
+  const y = useParallax(scrollYProgress, 300);
+
+  return (
+    <section className="img-container  " >
+      <motion.p className="w-[30%] h-[30%] bg-white absolute z-5 opacity-0.8 ">{description}</motion.p>
+      <div ref={ref} className="relative">
+        <img src={image} alt="Cityscape" />
+      </div>
+      <motion.h2 style={{ y}}><i>{`#00${id}`}</i></motion.h2>
+    </section>
+  );
 }
 
-function Image({ id }) {
-    const ref = useRef(null)
-    const { scrollYProgress } = useScroll({ target: ref })
-    const y = useParallax(scrollYProgress, 300)
+export default function Parallax(props) {
+  const { scrollYProgress } = useScroll();
 
-    return (
-        <section className="img-container">
-            <div ref={ref}>
-                <img
-                    src={`/photos/cityscape/${id}.jpg`}
-                    alt="A London skyscraper"
-                />
-            </div>
-            <motion.h2
-                initial={{ visibility: "hidden" }}
-                animate={{ visibility: "visible" }}
-                style={{ y }}
-            >{`#00${id}`}</motion.h2>
-        </section>
-    )
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  return (
+    <>
+      {/* 🔹 FIXED BACKGROUND */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <Silk
+          speed={5}
+          scale={1.2}
+          color={a}
+          noiseIntensity={1.5}
+          rotation={0}
+        />
+      </div>
+
+      {/* 🔹 SCROLLING CONTENT */}
+      <div id="example" className="relative overflow-hidden">
+        {props.Image?.map((image,i) => (
+          <Image key={i} id={i} description= {props.description[i]} />
+        ))}
+
+        <motion.div className="progress z-20" style={{ scaleY }} />
+        <motion.div className="pback fixed z-10" />
+        <StyleSheet />
+      </div>
+    </>
+  );
 }
 
-export default function Parallax() {
-    const { scrollYProgress } = useScroll()
-    const n = 5
-    // We change the spring variable to scaleY for vertical growth
-    const scaleY = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001,
-    })
-
-    return (
-        <div id="example" className="overflow-hidden">
-            {[1, 2, 3, 4, 5].map((image) => (
-                <Image key={image} id={image} />
-            ))}
-            {/* Bind scaleY and ensure CSS handles the origin */}
-            <motion.div className="progress z-3 toHide" style={{ scaleY }} />
-            <motion.div className="h-[100vh] pback fixed toHide w-[5px] bg-[gray] z-2 top-0 left-[40px]" />
-            <StyleSheet />
-        </div>
-    )
-}
-
-/**
- * ==============   Styles   ================
- */
+/* ================= STYLES ================= */
 
 function StyleSheet() {
-    return (
-        <style>{`
-        html {
-            scroll-snap-type: y mandatory;
-        }
+  return (
+    <style>{`
+      html {
+        scroll-snap-type: y mandatory;
+      }
 
-        .img-container {
-            height: 100vh;
-            scroll-snap-align: start;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+      .img-container {
+        height: 100vh;
+        scroll-snap-align: start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
 
+      .img-container > div {
+        width: 500px;
+        height: 600px;
+        background: red;
+        overflow: hidden;
+      }
+
+      .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .img-container h2{
+        position: absolute;
+        color: #8df0cc;
+        font-family: "Azeret Mono", monospace;
+        font-size: 50px;
+        font-weight: 700;
+        top: 50%;
+        left: calc(60% + 120px);
+        transform: translateY(-50%);
+      }
+      .img-container p{
+        left:50px;
+        bottom:20%
+        
+      }
+      .progress {
+        position: fixed;
+        left: 40px;
+        top: 0;
+        width: 6px;
+        height: 100vh;
+        background: #8df0cc;
+        transform-origin: top;
+      }
+
+      .pback {
+        left: 40px;
+        top: 0;
+        width: 5px;
+        height: 100vh;
+        background: gray;
+      }
+
+      @media (max-width: 500px) {
         .img-container > div {
-            width: 500px;
-            height: 400px;
-            margin: 20px;
-            
-            background: #f5f5f5;
-            overflow: hidden;
+          width: 200px;
+          height: 150px;
         }
 
-        .img-container img {
-            width: 500px;
-            height: 400px;
-            object-fit: cover;
-        }
-
-      
         .img-container h2 {
-            color: #8df0cc;
-            margin: 0;
-            font-family: "Azeret Mono", monospace;
-            font-size: 50px;
-            font-weight: 700;
-            letter-spacing: -3px;
-            line-height: 1.2;
-            position: absolute;
-            display: inline-block;
-            top: calc(50% - 25px);
-            left: calc(60% + 120px);
-        }
-        .progress {
-            position: fixed;
-            left: 40px;          /* Distance from left edge */
-            top: 0vh;           /* Vertical start position */
-            width: 6px;          /* Width of the vertical bar */
-            height: 100vh;        /* Total height of the bar track */
-            background: #8df0cc;
-            
-            transform-origin: 0% 0%; 
-        }
-          @media (max-width: 500px) {
-            .img-container > div {
-                width: 150px;
-                height: 120px;
-            }
-
-            .img-container img {
-                width: 150px;
-                height: 120px;
-            }
-            .img-container h2 {
-        left:calc(20%);}
-
-        .progress,.pback {
-            left:20px;
-        }
+          left: 20%;
         }
 
+        .progress,
+        .pback {
+          left: 20px;
+        }
+      }
     `}</style>
-    )
+  );
 }

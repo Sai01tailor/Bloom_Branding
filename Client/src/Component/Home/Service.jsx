@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";4
+import Color from "../Global/Color"
 
-const Service = () => {
+const Service = (props) => {
   const containerRef = useRef(null);
   const [activeZ, setActiveZ] = useState(10);
 
@@ -21,11 +22,13 @@ const Service = () => {
   return (
     <div
       ref={containerRef}
-      className="h-screen w-screen relative overflow-hidden flex flex-col items-center justify-center"
+      className="h-screen w-screen relative overflow-hidden flex flex-col items-center justify-center overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #f5efe6, #e6dac7)",
+        background: `linear-gradient(135deg, ${Color.EarlGray}, ${Color.EarlGray})`,
       }}
     >
+    <motion.img className="absolute top-0 left-0" style={{x:'-50%',rotateZ:-45 }} src="/TornPaper.png"/>
+    <motion.img className="absolute bottom-0 right-0" style={{x:' 40%',y:'10%',rotateZ:-20  }} src="/TornPaper.png"/>
       {/* Cards are now positioned relative to the whole screen */}
       {services.map((service, index) => (
         <motion.div
@@ -76,7 +79,7 @@ const Service = () => {
 
       {/* Bottom Interface */}
       <div className="absolute  flex flex-col items-center gap-6 pointer-events-none ">
-        <h1 className="text-[20vh] font-serif text-gray-900 tracking-tight opacity-90 overflow-hidden">
+        <h1 className="text-[20vh] font-serif text-gray-900 tracking-tight opacity-90 overflow-hidden" style={{color:Color.DarkChoc}}>
           Services
         </h1>
 

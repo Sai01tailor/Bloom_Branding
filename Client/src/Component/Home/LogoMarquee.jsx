@@ -1,14 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Color from "../Global/Color";
 
 const InfiniteMarquee = ({ logos }) => {
   const repeatedLogos = [...logos, ...logos]; // seamless
 
   return (
-    <div className="relative h-[20vh] w-full overflow-hidden bg-white py-12">
+    <div className="relative h-[20vh] w-full overflow-hidden  py-12" style={{backgroundColor:Color.ElectricBlue}}>
       {/* Fade edges */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent z-10" />
 
       {/* Track */}
       <motion.div
@@ -39,7 +40,10 @@ const InfiniteMarquee = ({ logos }) => {
               <img
                 src={logo}
                 alt=""
-                className="h-16 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                className="h-16 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:hover:invert-[74%]
+    hover:sepia-[23%]
+    hover:saturate-[640%]
+    hover:hue-rotate-[12deg] transition-all duration-300"
               />
             </motion.div>
           );

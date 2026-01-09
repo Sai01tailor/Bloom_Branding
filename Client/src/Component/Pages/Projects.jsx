@@ -3,6 +3,7 @@ import Demo from "../Projects/Demo";
 import Menu from "../Global/Menu";
 import Footer from "../Global/Footer";
 import Header from "../Global/Header";
+import Color from "../Global/Color";
 
 const HorizontalMenu = () => {
   const items = [
@@ -19,7 +20,7 @@ const HorizontalMenu = () => {
   ];
 
   return (
-    <div className="w-full bg-black py-4">
+    <div className="w-full bg-transparent py-4" style={{backgroundImage:`linear-gradient(to bottom, ${Color.DarkChoc}, ${Color.EarlGray})`}}>
       <div
         className="
           flex justify-center gap-3 overflow-x-auto px-4
@@ -55,7 +56,7 @@ const Projects = () => {
   return (
     <div>
       <Header />
-      <div>
+      <div style={{backgroundColor:Color.EarlGray}}>
         <HorizontalMenu />
         <Demo />
       </div>

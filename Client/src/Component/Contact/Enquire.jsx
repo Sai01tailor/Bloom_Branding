@@ -3,6 +3,7 @@ import { TextLabel, TextAreaLabel, Slider03 } from "../Global/Label";
 import LiquidEther from "./Background";
 import Footer from '../Global/Footer'
 import Menu from "../Global/Menu";
+import Color from "../Global/Color";
 const Enquire = () => {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
@@ -15,18 +16,19 @@ const Enquire = () => {
   return (
     <>
     <Menu/>
-    <div className="min-h-screen  w-full flex items-center justify-center bg-gradient-to-br from-[#1e293b] via-[#334155] to-[#0f172a] p-6">
+    <div className="min-h-screen  w-full flex items-center justify-center p-6"
+    style={{backgroundColor:Color.ButterYellow}}>
       <div
         style={{
           width: "100%",
-          height: "110%",
+          height: "125%",
           position: "absolute",
           top: 0,
           left: 0,
         }}
       >
         <LiquidEther
-          colors={["black", "white", "gray"]}
+          colors={[Color.EarlGray,Color.DarkChoc]}
           mouseForce={20}
           cursorSize={50}
           isViscous={false}

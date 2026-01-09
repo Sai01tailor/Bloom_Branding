@@ -10,10 +10,11 @@ import Product from "../Home/Product";
 import LogoMarquee from "../Home/LogoMarquee";
 import Instagram_preview from "../Home/Instagram_preview";
 import Story from "../Home/Story";
+import Color from "../Global/Color.jsx";
 
 const LOGO_SRC = [
-  "https://cdn.simpleicons.org/react/61DAFB",     // React Blue
-  "https://cdn.simpleicons.org/framer/0055FF",    // Framer Blue
+  "https://cdn.simpleicons.org/react/61DAFB", // React Blue
+  "https://cdn.simpleicons.org/framer/0055FF", // Framer Blue
   "https://cdn.simpleicons.org/tailwindcss/06B6D4", // Tailwind Cyan
   "https://cdn.simpleicons.org/nextdotjs/000000", // Next.js Black
   "https://cdn.simpleicons.org/typescript/3178C6", // TS Blue
@@ -28,18 +29,43 @@ const LOGO_SRC = [
 
 const Home = () => {
   return (
-    <div className="w-screen ">
+    <div className={`w-screen `}>
       <Header />
       <Hero />
       <div
-        className="h-[80vh] w-screen bg-transparent "
+        className={`h-[80vh] w-screen  relative `}
         style={{
           overflow: "hidden",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: Color.DarkChoc,
         }}
       >
+        <motion.img
+          src="./Camera.png"
+          className="h-[20%] absolute left-[10%] top-[50%] md:h-[50%] "
+          initial={{ rotateZ: 180 }}
+          animate={{ rotateZ: [0, -10, 0, 10, 0] }}
+          transition={{
+            repeat: Infinity,
+            ease: "easeInOut",
+            duration: 2,
+          }}
+        />
+        <motion.img
+          src="./loud.png"
+          className="h-[20%] absolute right-[10%] bottom-[50%] md:h-[50%]"
+          initial={{ rotateZ: 180 }}
+          animate={{ rotateZ: [0, -10, 0, 10, 0] }}
+          transition={{
+            repeat: Infinity,
+            ease: "easeInOut",
+            duration: 2,
+          }}
+          style={{ scaleX: -1 }} // ✅ OK here
+        />
+
         <MouseTrail stroke="black" />
         <motion.div
           className="SubHeading"
@@ -47,18 +73,20 @@ const Home = () => {
             fontSize: "10vh",
             fontWeight: "bold",
             textAlign: "center",
-            color: "black",
+            color: Color.EarlGray,
+            zIndex: 2,
           }}
         >
           Blooming the world
           <br /> with Creativity
         </motion.div>
       </div>
-          <Service/>
-          <Product/>
-          <LogoMarquee logos={LOGO_SRC}/>
-          <Story/>
-          <Instagram_preview/>
+      <Service />
+      <h1 style={{backgroundColor:Color.ElectricBlue,height:'10vh',fontSize:'7vh',textAlign:'center',fontWeight:'bolder',color:Color.ButterYellow}}>Little Twist In Color </h1>
+      <Product />
+      <LogoMarquee logos={LOGO_SRC} />
+      <Story />
+      <Instagram_preview />
       <Menu />
       <Footer />
     </div>
