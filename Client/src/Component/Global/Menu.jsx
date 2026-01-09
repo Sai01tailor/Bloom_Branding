@@ -184,7 +184,7 @@ const Menu = () => {
         >
           {menuItems.map((item) => (
             <Link to={'/'+item.title.toString().toLowerCase()}>
-            <MenuItem key={item.id} title={item.title} img={item.img} />
+            <MenuItem key={item.id} title={item.title}  />
             </Link>
           ))}
         </motion.div>

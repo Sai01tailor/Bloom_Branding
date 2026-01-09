@@ -49,7 +49,7 @@ const Footer = (props) => {
       }}
       transition={{ duration: 1, delay: 0.3 }}
     >
-      <div className="flex h-[70%] w-full bg-gray-300 justify-around items-center ">
+      <div className="flex h-[90%] w-full bg-gray-300 justify-around items-center ">
         <div className="w-[20%] h-full bg-blue-200 flex flex-col justify-between">
           <motion.div
             className="w-full  flex-col flex items-center justify-center"
@@ -135,7 +135,7 @@ const Footer = (props) => {
           style={{ padding: 16, alignItems: "end" }}
         >
           <motion.div
-            className="w-full h-[70%]  flex items-center flex-col justify-center "
+            className="w-full h-[50%]  flex items-center flex-col justify-center "
             style={{ borderRadius: 20, padding: 10 }}
             initial={{ border: "0px solid white" }}
             animate={{ border: "10px solid white" }}
@@ -175,15 +175,7 @@ const Footer = (props) => {
           <div className="w-full bg-gray-800"></div>
         </div>
       </div>
-      <div className="w-full min-h-[25%] max-h-[35%]  flex items-center justify-center">
-        <img
-          src="/BigLogo.png"
-          className="w-[20%]  object-cover"
-          style={{
-            filter: " drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5))",
-          }}
-        ></img>
-      </div>
+      
       <div className="w-full  leading-normal h-[2%]  font-bold text-white flex justify-center items-center text-[2vh]">
         &copy; 2024 Bloom Branding. All rights reserved.
       </div>

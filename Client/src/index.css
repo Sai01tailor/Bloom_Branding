@@ -14,10 +14,7 @@
   font-family: 'Main Heading' ;
   src: url(/Bigilla.otf) format('opentype');
 }
-/* @font-face{
-  font-family: 'Sub Heading';
-  src: url(/client/public/Lekton-Bold.ttf) format('truetype');
-} */
+
 
 body{
   background-color: white !important;

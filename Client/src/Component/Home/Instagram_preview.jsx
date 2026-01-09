@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Grid, Film, User, PlusSquare, MessageCircle } from "lucide-react";
+import TextType from "../Global/TextType";
 
 /* ===== PHONE ===== */
 const PHONE_WIDTH = 433;
@@ -37,9 +38,9 @@ function Iphone({ children }) {
           right: 20,
           bottom: 20,
           borderRadius: 56,
-          paddingTop:16,
-          paddingLeft:8,
-          paddingRight:8
+          paddingTop: 16,
+          paddingLeft: 8,
+          paddingRight: 8,
         }}
       >
         <div
@@ -176,10 +177,30 @@ function InstagramProfile() {
 /* ===== APP ===== */
 export default function App() {
   return (
-    <div className="min-h-screen bg-neutral-100 flex items-center justify-center">
-      <Iphone>
-        <InstagramProfile />
-      </Iphone>
+    <div className="relative">
+      <div className="min-h-screen  bg-neutral-100 flex items-center justify-center">
+        <Iphone>
+          <InstagramProfile />
+        </Iphone>
+      </div>
+      <motion.div
+        className="absolute h-[10vh] top-0 bottom-0 left-[10vw] text-[5vh] "
+        style={{ marginBlock: "auto" }}
+        initial={{x:'-100vw',opacity:0}}
+        animate={{x:0,opacity:1}}
+        transition={{duration:1,ease:'easeInOut'}}
+      >
+        <h1 style={{ fontFamily: "Bigilla" }}>Instagram Preview</h1>
+      </motion.div>
+      <motion.div
+        className="absolute h-[10vh] top-0 bottom-0 right-[15vw] text-[5vh] "
+        style={{ marginBlock: "auto" }}
+        initial={{x:'100vw',opacity:0}}
+        animate={{x:0,opacity:1}}
+        transition={{duration:1,ease:'easeInOut'}}
+      >
+        <h1 style={{ fontFamily: "Bigilla" }}>Follow US </h1>
+      </motion.div>
     </div>
   );
 }
