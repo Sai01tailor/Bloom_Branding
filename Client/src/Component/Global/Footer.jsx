@@ -26,7 +26,7 @@ const Footer = (props) => {
   var a = null;
   return (
     <motion.div
-      className="w-screen bg-red-100  h-[100vh] "
+      className="w-screen bg-red-100   h-[100vh] "
       style={{ padding: 4, borderRadius: 50 }}
       onViewportEnter={() => {
         // Find the element

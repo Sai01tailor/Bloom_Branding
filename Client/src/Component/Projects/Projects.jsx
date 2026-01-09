@@ -1,72 +1,58 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-const ParallaxScroll = ({ images, className = "" }) => {
-  const containerRef = useRef(null);
-
+const ParallaxColumnGrid = ({ images = [] }) => {
+  const sectionRef = useRef(null);
+  images = [...images,...images,...images]
   const { scrollYProgress } = useScroll({
-    container: containerRef,
-    offset: ["start start", "end start"],
+    target: sectionRef,
+    offset: ["start end", "end start"],
   });
 
+  // column parallax values
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y5 = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
-  const third = Math.ceil(images.length / 3);
+  const cols = [[], [], [], [], []];
+  images.forEach((img, i) => {
+    cols[i % 5].push(img);
+  });
 
-  const col1 = images.slice(0, third);
-  const col2 = images.slice(third, third * 2);
-  const col3 = images.slice(third * 2);
-
-  const ImageItem = ({ src, y }) => (
-    <div className="relative h-100 w-full overflow-hidden rounded-lg bg-red-500">
-      <motion.img
-        src={src}
-        style={{ y }}
-        className="absolute inset-0 h-full w-full object-cover"
-        alt="parallax"
-      />
-    </div>
-  );
+  const colYs = [y1, y2, y3, y4, y5];
 
   return (
-    <div
-      ref={containerRef}
-      className={`h-[100vh] w-full bg-black relative  overflow-y-auto ${className}`}
+    <section
+      ref={sectionRef}
+      className="relative w-full bg-black py-40"
     >
-      <div className="  mx-auto grid grid-cols-1 gap-10  py-40 md:grid-cols-2 lg:grid-cols-5" >
-        <div className="grid gap-10">
-          {col2.map((src, i) => (
-            <ImageItem key={i} src={src} y={y2} />
-          ))}
-        </div>
-        <div className="grid gap-10">
-          {col1.map((src, i) => (
-            <ImageItem key={i} src={src} y={y1} />
-          ))}
-        </div>
-
-        <div className="grid gap-10">
-          {col2.map((src, i) => (
-            <ImageItem key={i} src={src} y={y2} />
-          ))}
-        </div>
-
-        <div className="grid gap-10">
-          {col1.map((src, i) => (
-            <ImageItem key={i} src={src} y={y1} />
-          ))}
-        </div>
-       
-        <div className="grid gap-10">
-          {col2.map((src, i) => (
-            <ImageItem key={i} src={src} y={y2} />
-          ))}
-        </div>
+      <div className="mx-auto grid grid-cols-1 gap-10 
+                      sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        {cols.map((col, colIndex) => (
+          <motion.div
+            key={colIndex}
+            style={{ y: colYs[colIndex] }}
+            className="flex flex-col gap-10"
+          >
+            {col.map((src, i) => (
+              <div
+                key={i}
+                className="relative h-[420px] w-full overflow-hidden rounded-xl"
+              >
+                <img
+                  src={src}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </motion.div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
-export default ParallaxScroll;
+export default ParallaxColumnGrid;

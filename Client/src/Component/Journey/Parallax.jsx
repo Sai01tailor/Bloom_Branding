@@ -51,7 +51,7 @@ export default function Parallax() {
             ))}
             {/* Bind scaleY and ensure CSS handles the origin */}
             <motion.div className="progress z-3 toHide" style={{ scaleY }} />
-            <motion.div className="h-[100vh] pback absolute toHide w-[5px] bg-[gray] z-2 top-0 left-[40px]" />
+            <motion.div className="h-[100vh] pback fixed toHide w-[5px] bg-[gray] z-2 top-0 left-[40px]" />
             <StyleSheet />
         </div>
     )
@@ -107,7 +107,7 @@ function StyleSheet() {
             left: calc(60% + 120px);
         }
         .progress {
-            position: absolute;
+            position: fixed;
             left: 40px;          /* Distance from left edge */
             top: 0vh;           /* Vertical start position */
             width: 6px;          /* Width of the vertical bar */
