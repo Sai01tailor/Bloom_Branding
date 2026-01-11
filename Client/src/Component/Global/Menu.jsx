@@ -173,7 +173,7 @@ const smoothPath = useMotionTemplate`
           animate={menuStatus ? "open" : "closed"}
         >
           {menuItems.map((item) => (
-            <Link to={'/'+item.title.toString().toLowerCase()}>
+            <Link to={'/'+item.title.toString().toLowerCase()} onClick={()=>{setMenuStatus(false)}}>
             <MenuItem key={item.id} title={item.title}  />
             </Link>
           ))}

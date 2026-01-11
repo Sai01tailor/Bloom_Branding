@@ -11,7 +11,8 @@ import LogoMarquee from "../Home/LogoMarquee";
 import Instagram_preview from "../Home/Instagram_preview";
 import Story from "../Home/Story";
 import Color from "../Global/Color.jsx";
-
+import transition from "../Global/PageTransition.jsx";
+      import Spline from '@splinetool/react-spline';
 const LOGO_SRC = [
   "https://cdn.simpleicons.org/react/61DAFB", // React Blue
   "https://cdn.simpleicons.org/framer/0055FF", // Framer Blue
@@ -31,7 +32,10 @@ const Home = () => {
   return (
     <div className={`w-screen `}>
       <Header />
-      <Hero />
+      {/* <Hero /> */}
+
+    <Spline scene="https://prod.spline.design/H9CV7G84MsY90C-9/scene.splinecode" />
+
       <div
         className={`h-[80vh] w-screen  relative `}
         style={{
@@ -55,7 +59,7 @@ const Home = () => {
         />
         <motion.img
           src="./loud.png"
-          className="h-[20%] absolute right-[10%] bottom-[50%] md:h-[50%]"
+          className="h-[20%] absolute right-[10%] md:bottom-[50%] bottom-[30%] md:h-[50%]"
           initial={{ rotateZ: 180 }}
           animate={{ rotateZ: [0, -10, 0, 10, 0] }}
           transition={{
@@ -82,7 +86,7 @@ const Home = () => {
         </motion.div>
       </div>
       <Service />
-      <h1 style={{backgroundColor:Color.ElectricBlue,height:'10vh',fontSize:'7vh',textAlign:'center',fontWeight:'bolder',color:Color.ButterYellow}}>Little Twist In Color </h1>
+      <h1 style={{backgroundColor:Color.DarkChoc,height:'10vh',fontSize:'7vh',textAlign:'center',fontWeight:'bolder',color:Color.ButterYellow}}>Little Twist In Color </h1>
       <Product />
       <LogoMarquee logos={LOGO_SRC} />
       <Story />
@@ -93,4 +97,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default (Home);

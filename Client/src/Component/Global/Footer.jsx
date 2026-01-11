@@ -5,6 +5,7 @@ import TextType from "./TextType";
 import { Link } from "react-router-dom";
 import Contact from "../Pages/Contact";
 import Colors from "./Color";
+import Color from "./Color";
 
 /* ---------------- ACCORDION ITEM (MOBILE) ---------------- */
 
@@ -143,16 +144,17 @@ const Footer = ({ socials }) => {
           {/* CENTER — 40% */}
           <div className="w-[40%] h-full flex flex-col justify-center">
             <motion.div
-              className="border-8  h-[50%]  rounded-2xl p-6 flex flex-col items-center justify-center"
-              style={{borderColor:Colors.ButterYellow}}
+              className="border-8 h-[50%]  rounded-2xl p-6 flex flex-col items-center justify-center"
+              style={{borderColor:Colors.EarlGray,paddingInline:32,backgroundColor:Colors.ButterYellow}}
               transition={{ ease: easeIn, duration: 1.5 }}
             >
               <TextPressure
                 text="Blooming"
-                textColor={Colors.ButterYellow}
+                textColor={Colors.EarlGray}
+                
                 minFontSize={36}
               />
-              <TextType text="In The Style" textColors={[Colors.ButterYellow]} />
+              <TextType text="In The Style" textColors={[Colors.EarlGray]} />
             </motion.div>
 
             <button
@@ -168,8 +170,8 @@ const Footer = ({ socials }) => {
             {/* Top Row */}
             <div className="flex gap-6 h-[35%]">
               {/* Services */}
-              <div className="flex-1  rounded-2xl flex flex-col items-center justify-center text-center p-6" style={{
-backgroundColor:Colors.ButterYellow}}>
+              <div className="flex-1 border-4 rounded-2xl flex flex-col items-center justify-center text-center p-6" style={{
+backgroundColor:Colors.ButterYellow,borderColor:Colors.EarlGray}}>
                 <h3 className="text-white font-bold text-lg mb-4">Services</h3>
                 <ul className="space-y-2 text-sm text-white/80">
                   <li className={`hover:text-white  text-${Colors.ElectricBlue} cursor-pointer`}>Branding</li>
@@ -180,8 +182,8 @@ backgroundColor:Colors.ButterYellow}}>
               </div>
 
               {/* Pages */}
-              <div className="flex-1 bg-gray-600 rounded-2xl flex flex-col items-center justify-center text-center p-6" style={{
-backgroundColor:Colors.ButterYellow}}>
+              <div className="flex-1 border-4 bg-gray-600 rounded-2xl flex flex-col items-center justify-center text-center p-6" style={{
+backgroundColor:Colors.ButterYellow,borderColor:Colors.EarlGray}}>
                 <h3 className="text-white font-bold text-lg mb-4">Pages</h3>
                 <ul className="space-y-2 text-sm text-white/80">
                   <li className={`hover:text-white  text-${Colors.ElectricBlue} cursor-pointer`}>Home</li>
@@ -193,8 +195,8 @@ backgroundColor:Colors.ButterYellow}}>
             </div>
 
             {/* Bottom Row */}
-            <div className="h-[25%] bg-gray-700 rounded-2xl flex flex-col items-center justify-center text-center p-6" style={{
-backgroundColor:Colors.ButterYellow}}>
+            <div className="h-[25%] bg-gray-700 border-4 rounded-2xl flex flex-col items-center justify-center text-center p-6" style={{
+backgroundColor:Colors.ButterYellow,borderColor:Colors.EarlGray}}>
               <h3 className="text-white font-bold text-lg mb-3">Contact Us</h3>
               <p className="text-sm text-white/80">hello@bloombranding.com</p>
               <p className="text-sm text-white/80 mt-1">+91 98765 43210</p>

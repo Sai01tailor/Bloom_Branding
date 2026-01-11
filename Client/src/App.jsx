@@ -1,4 +1,4 @@
-import {Routes,Route} from 'react-router-dom'
+import {Routes,Route, useLocation} from 'react-router-dom'
 import Home from './Component/Pages/Home.jsx'
 import './App.css'
 import Contact from './Component/Pages/Contact.jsx'
@@ -7,9 +7,10 @@ import { useEffect } from 'react'
 import Lenis from "lenis";
 import Projects from './Component/Pages/Projects.jsx'
 import ServicesPage from './Component/Pages/Services.jsx'
-
+import PageTransition from './Component/Global/PageTransition.jsx'
 
 function App() {
+  const location = useLocation()
    useEffect(() => {
     const lenis = new Lenis({
       smooth: true,
@@ -26,7 +27,7 @@ function App() {
     return () => lenis.destroy();
   }, []);
   return (
-    <Routes>
+    <Routes location={location}>
       <Route path='/' element={<Home/>}/>
       <Route path='/home' element={<Home/>}/>
       <Route path='/contact' element={<Contact/>}/>
@@ -34,7 +35,7 @@ function App() {
       <Route path='/projects' element={<Projects/>}/>
       <Route path='/services' element={<ServicesPage/>}/>
     </Routes>
-  )
+    )
 }
 
 export default App

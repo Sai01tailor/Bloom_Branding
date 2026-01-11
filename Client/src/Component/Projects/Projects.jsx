@@ -11,11 +11,11 @@ const ParallaxColumnGrid = ({ images = [] }) => {
   });
 
   // column parallax values
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y5 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y5 = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   const cols = [[], [], [], [], []];
   images.forEach((img, i) => {
@@ -36,13 +36,14 @@ const ParallaxColumnGrid = ({ images = [] }) => {
         {cols.map((col, colIndex) => (
           <motion.div
             key={colIndex}
-            style={{ y: colYs[colIndex] }}
-            className="flex flex-col gap-10"
+            style={{ y: colYs[colIndex],paddingInline:15,paddingBlock:50 }}
+            className="flex flex-col gap-10 "
           >
             {col.map((src, i) => (
               <div
                 key={i}
-                className="relative h-[420px] w-full overflow-hidden rounded-xl"
+                className="relative h-[420px] w-full overflow-hidden rounded-xl backdrop-blur-md border border-white/30 
+            shadow-xl shadow-black/40"
               >
                 <img
                   src={src}

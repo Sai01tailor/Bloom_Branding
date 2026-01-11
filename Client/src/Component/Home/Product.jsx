@@ -9,13 +9,19 @@ const Product = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-zinc-950 relative overflow-hidden ">
+    <div className={`w-screen h-screen bg relative overflow-hidden ` }
+    style={{
+    background: `radial-gradient(circle, ${Color.EarlGray} 20%, ${Color.DarkChoc} 100%)`,
+  }}
+    >
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent z-10" />
+
       <div
         className="flex flex-col items-center justify-center w-full absolute top-[10%] left-0 right-0"
         style={{ margin: "auto" }}
       >
         {/* SVG 1: Some Glimpses */}
-        <svg className="w-full h-[8vh] overflow-visible">
+        <svg className="w-full h-[5vh] overflow-visible">
           <motion.text
             x="50%"
             y="50%"
@@ -42,7 +48,7 @@ const Product = () => {
         </svg>
 
         {/* SVG 2: WORKS */}
-        <svg className="w-full h-[25vh] overflow-visible">
+        <svg className="w-full h-[20vh] overflow-visible">
           <motion.text
             x="50%"
             y="50%"
@@ -84,6 +90,8 @@ const Product = () => {
 export default Product;
 
 import { AnimatePresence } from "framer-motion";
+import Color from "../Global/Color";
+import { redirect } from "react-router-dom";
 
 const ProductCarousel = () => {
   const [index, setIndex] = useState(0);
@@ -121,7 +129,7 @@ const ProductCarousel = () => {
     },
   ];
 
-  const radius = 270; // Distance from center
+  const radius = 220; // Distance from center
   const totalItems = products.length;
 
   const next = () => setIndex((prev) => (prev + 1) % totalItems);
@@ -136,7 +144,6 @@ const ProductCarousel = () => {
     >
       {/* The Central Hub (Optional) */}
       <div className="absolute w-20 h-20 bg-white/10 rounded-full blur-3xl" />
-
       {/* The Orbiting Container */}
       <div className="relative w-full h-full flex items-center justify-center">
         {products.map((item, i) => {
@@ -166,10 +173,14 @@ const ProductCarousel = () => {
               }}
               transition={{ type: "spring", stiffness: 120, damping: 20 }}
               className="absolute cursor-pointer"
-              onClick={() => setIndex(i)}
+              onClick={() => {
+                if(isCenter)
+                window.open(`/project/${item.title}`,'_self')
+                setIndex(i)}}
             >
               <ProductCard data={item} isCenter={isCenter} />
             </motion.div>
+            
           );
         })}
       </div>

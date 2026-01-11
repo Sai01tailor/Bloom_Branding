@@ -20,7 +20,7 @@ const HorizontalMenu = () => {
   ];
 
   return (
-    <div className="w-full bg-transparent py-4" style={{backgroundImage:`linear-gradient(to bottom, ${Color.DarkChoc}, ${Color.EarlGray})`}}>
+    <div className="w-full bg-transparent py-4 " >
       <div
         className="
           flex justify-center gap-3 overflow-x-auto px-4
@@ -35,14 +35,14 @@ const HorizontalMenu = () => {
               snap-start shrink-0
               rounded-full border border-white/15
               h-[5vh]
-              w-[5vw]
+              cursor-pointer
               px-5 py-2
               text-sm font-medium text-white
               backdrop-blur-md
               hover:bg-white hover:text-black
               transition
             "
-            style={{marginTop:'10vh',marginBottom:'2vh'}}
+            style={{marginTop:'10vh',marginBottom:'2vh',paddingInline:20}}
           >
             {item}
           </button>
@@ -56,7 +56,7 @@ const Projects = () => {
   return (
     <div>
       <Header />
-      <div style={{backgroundColor:Color.EarlGray}}>
+      <div style={{backgroundImage:`linear-gradient(to bottom, ${Color.DarkChoc}, ${Color.EarlGray})`,backgroundPosition:'fixed'}}>
         <HorizontalMenu />
         <Demo />
       </div>

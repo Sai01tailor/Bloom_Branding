@@ -52,10 +52,10 @@ const Service = (props) => {
             boxShadow: "0 40px 80px rgba(0,0,0,0.2)",
             cursor: "grabbing",
           }}
-          className="absolute select-none bg-[#f7f3ff] p-4 rounded-xl shadow-2xl cursor-grab flex items-center justify-center flex-col"
+          className="absolute select-none bg-[#f7f3ff] p-4 rounded-xl shadow-2xl cursor-grab flex items-center justify-center flex-col "
           style={{
-            width: 320,
-            height: 350,
+            width: 300,
+            height: 300,
             zIndex: index+1,
           }}
         >
@@ -78,10 +78,14 @@ const Service = (props) => {
       ))}
 
       {/* Bottom Interface */}
-      <div className="absolute  flex flex-col items-center gap-6 pointer-events-none ">
-        <h1 className="text-[20vh] font-serif text-gray-900 tracking-tight opacity-90 overflow-hidden" style={{color:Color.DarkChoc}}>
+      <div className="absolute  flex flex-col items-center pointer-events-none ">
+        <h1 className="md:text-[20vh] text-[30vw] font-serif text-gray-900 tracking-tight opacity-90 overflow-hidden" style={{color:Color.DarkChoc}}>
           Services
         </h1>
+        
+        <h4 className="md:text-[5vh] text-[6vw] font-serif text-gray-900 tracking-tight opacity-90 overflow-hidden" style={{color:Color.DarkChoc}}>
+          we Offer
+        </h4>
 
       </div>
     </div>

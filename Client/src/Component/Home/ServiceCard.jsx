@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, scale } from 'framer-motion'
 const ServiceCard = (props) => {
     const constraintsRef = React.useRef(null);
   return (
@@ -8,7 +8,7 @@ const ServiceCard = (props) => {
     drag 
     dragConstraints={constraintsRef}
     dragElastic={0.2}
-    className='w-100 h-30 bg-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center relative border-2 border-gray-300'
+    className='w-100 h-30   bg-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center relative border-2 border-gray-300'
     
     >
         {(props.imgsrc) ? <img src={props.imgsrc} alt="Service" className='w-20 h-20 mx-auto' /> : null}
