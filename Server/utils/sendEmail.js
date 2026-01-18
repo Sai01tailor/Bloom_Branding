@@ -1,33 +1,32 @@
-const SibApiV3Sdk = require("sib-api-v3-sdk");
-
-// Initialize client
-const client = SibApiV3Sdk.ApiClient.instance;
-
-// IMPORTANT: correct auth key
-client.authentications["api-Key"].apiKey = process.env.BREVO_API_KEY;
-
-// Create API instance
-const emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
+const axios = require("axios");
 
 const sendEmail = async ({ to, subject, text, html }) => {
   try {
-    const emailData = {
-      sender: {
-        email: process.env.BREVO_SENDER_EMAIL,
-        name: "Bloom Branding",
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          email: process.env.BREVO_SENDER_EMAIL,
+          name: "Bloom Branding",
+        },
+        to: [{ email: to }],
+        subject,
+        textContent: text || "New enquiry received",
+        htmlContent: html || `<p>${text || "New enquiry received"}</p>`,
       },
-      to: [{ email: to }],
-      subject,
-      textContent: text || "New enquiry received",
-      htmlContent: html || `<p>${text || "New enquiry received"}</p>`,
-    };
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    const response = await emailApi.sendTransacEmail(emailData);
-    return response;
+    return response.data;
   } catch (err) {
     console.error(
-      "Brevo Email Error:",
-      err.response?.body || err.message
+      "Brevo API Error:",
+      err.response?.data || err.message
     );
     throw err;
   }
