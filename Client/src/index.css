@@ -1,0 +1,155 @@
+@import "tailwindcss" ;
+
+:root{
+  --border-color : 'black'
+}
+
+*{
+  overflow-x:hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+@font-face {
+  font-family: 'Main Heading' ;
+  src: url(/Bigilla.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Sub Heading' ;
+  src: url(/Font/Lekton-Bold.ttf) ;
+}
+@font-face {
+  font-family: 'Para' ;
+  src: url(/Font/ArialNova.ttf) ;
+}
+li{
+  font-family: 'Para';
+}
+button,a,input{
+  font-family: 'Para';
+  cursor: pointer;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Main Heading';
+}
+input{
+  color:white;
+}
+body{
+  background-color: white !important;
+  justify-content: center;
+  color: gray ;
+  font-family: 'Sub Heading', sans-serif;
+  min-height: 100vh;
+}
+p{
+  font-family: 'Para',sans-serif;
+}
+
+/* Typography */
+.Heading{
+  font-family: 'Main Heading', sans-serif;
+}
+.SubHeading{
+  font-family: 'Sub Heading',sans-serif;
+}
+label{
+  font-family: 'Main Heading';
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  margin-left: 4px;
+  display: block;
+}
+
+/* Global Buttons */
+.Button{
+  border-radius: 50000px !important;
+  border: 2px solid white !important;
+  background-color: transparent !important;
+  cursor: pointer !important;
+}
+.Button2{
+  border-radius: 50000px !important;
+  border: 2px solid  !important;
+  background-color: transparent !important;
+  cursor: pointer !important;
+}
+.Button:hover{
+  background-color: white !important;
+  color: black;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}
+.Button2:hover{
+  background-color: #bdaf62 !important;
+  color: #004AAD;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.25);
+  border-radius: 999px;
+}
+
+/* Page Transitions */
+.slide-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  background: #0f0f0f;
+  transform-origin: bottom;
+}
+.slide-out {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0f0f0f;
+  transform-origin: top;
+}
+
+/* iOS 18 High-Vibrancy Glass */
+.ios-glass-card {
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 10px solid rgba(255, 255, 255, 0.2);
+    border-radius: 42px; 
+    box-shadow: 
+        0 4px 24px -1px rgba(0, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* iOS Style Button */
+.ios-button {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    font-weight: 600;
+    padding: 16px;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: scale(0.98);
+}
+.ios-button:hover {
+    transform: scale(1);
+    background: rgba(255, 255, 255, 1);
+}
+.ios-button:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.8);
+}
